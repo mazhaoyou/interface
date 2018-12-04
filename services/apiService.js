@@ -44,8 +44,7 @@ class ApiService extends BaseController {
 
   //登陆
   userLand(number, password) {
-    console.log("number="+number);
-    console.log("password="+password);
+
     return new Promise((resolve, reject) => {
       try {
         const sql_number = $sql.user.select_number;
