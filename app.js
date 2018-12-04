@@ -3,6 +3,7 @@ const app = express();
 const moment = require('moment')
 //导入cors模块,该模块为跨域所用
 const cors = require('cors');
+const config = require('./config/config.js');
 
 // 加载路由模块
 const router = require('./routes/index.js');
@@ -35,5 +36,6 @@ app.use(bodyParser.urlencoded({
 
 
 app.listen(3001, () => {
+  // console.log('http://localhost:' + config.port);
   console.log('正在监听端口3000,http://192.168.8.198:3001'); //192.168.1.114换成你的ip,本机ip查询用cmd=>ipconfig
 })

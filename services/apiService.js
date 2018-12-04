@@ -1,10 +1,9 @@
 const logger = require("log4js").getLogger("services/apiService");
-const modules = require("../config/mysqlConfig");
-const BaseController = require('../controllers/baseController');
+const BaseController = require('../controller/baseController');
 const mysql = require("mysql");
-const $sql = require("./sqlMap");
+const $sql = require("../config/sqlMap.js");
 //连接数据库
-const conn = mysql.createConnection(modules.connection);
+const conn = require("../db/database.js");;
 
 /**
  * 数据处理层
@@ -16,7 +15,7 @@ class ApiService extends BaseController {
     this.baseController = new BaseController();
   }
   //注册
-  userRegister (number, password) {
+  userRegister(number, password) {
     return new Promise((resolve, reject) => {
       try {
         const select_number = $sql.user.select_number;
@@ -44,7 +43,7 @@ class ApiService extends BaseController {
   }
 
   //登陆
-  userLand (number, password) {
+  userLand(number, password) {
     return new Promise((resolve, reject) => {
       try {
         const sql_number = $sql.user.select_number;
@@ -52,16 +51,22 @@ class ApiService extends BaseController {
         conn.query(sql_number, number, function (err, results) {
           if (err) logger.error(error);
           if (results[0] === undefined) {
-            resolve({ msg: "您输入的的账号不正确！" })
+            resolve({
+              msg: "您输入的的账号不正确！"
+            })
             console.log("您输入的的账号不正确！");
           } else {
             conn.query(sql_pwd, password, function (err, results) {
               if (err) logger.error(error);
               if (results[0] === undefined) {
-                resolve({ msg: '密码输入错误！' })
+                resolve({
+                  msg: '密码输入错误！'
+                })
                 console.log("密码输入错误！");
               } else {
-                resolve({ msg: "登陆成功" })
+                resolve({
+                  msg: "登陆成功"
+                })
                 console.log("用户" + number + "登陆成功");
               }
             });

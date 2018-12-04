@@ -3,8 +3,15 @@ var express = require('express');
 // 加载业务模块
 var path = require('path');
 const conn = require('../db/database.js');
-
 var router = express.Router();
+// 注册、登录
+const userApi = require('./users.js')
+
+module.exports = function RouterModule(app) {
+  //定义统一的路由前缀
+  app.use('/api', userApi)
+}
+
 router.get('/api/getlist', (req, res) => {
   const sqlStr = 'SELECT * FROM article ORDER BY articleID DESC '
   conn.query(sqlStr, (err, results) => {

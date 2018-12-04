@@ -1,5 +1,5 @@
 const logger = require("log4js").getLogger("middlewares/authorization");
-const BaseController = require('../controllers/baseController')
+const BaseController = require('../controller/baseController')
 
 /**
  *做一个检查，提前拦截错误的方法，加到路由地址的后边router.get('/:webinarId/online_audiences', checkAuth, webinarController.getOnlineAudienceList.bind(webinarController)) 
