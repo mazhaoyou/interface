@@ -8,21 +8,21 @@ const BaseController = require('../controller/baseController')
  */
 function checkParameter(req, res, next) {
     //console.log('*****自定义验证规则*****')
-    const number = req.body.number
-    const password = req.body.password
-    console.log('number', number)
-    if (!number || number == "" || !password || password == "") {
-        return res.status(201).json({
-            msg: '请检验您的信息是否全部填写！'
-        })
-    }
-    const myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
-    if (!myreg.test(number)) {
-        return res.status(201).json({
-            msg: '请输入正确的手机号码！'
-        })
-    }
-    next()
+    // const number = req.body.number
+    // const password = req.body.password
+    // console.log('number', number)
+    // if (!number || number == "" || !password || password == "") {
+    //     return res.status(201).json({
+    //         msg: '请检验您的信息是否全部填写！'
+    //     })
+    // }
+    // const myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    // if (!myreg.test(number)) {
+    //     return res.status(201).json({
+    //         msg: '请输入正确的手机号码！'
+    //     })
+    // }
+     next()
 }
 
 module.exports = checkParameter;
