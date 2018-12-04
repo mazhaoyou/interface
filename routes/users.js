@@ -10,7 +10,7 @@ const ApiController = require('../controller/apiController')
 const apiController = new ApiController()
 
 
-router.get('/api/getlist', (req, res) => {
+router.get('/getlist', (req, res) => {
   const sqlStr = 'SELECT * FROM article ORDER BY articleID DESC '
   conn.query(sqlStr, (err, results) => {
     if (err) return res.json({
@@ -26,7 +26,7 @@ router.get('/api/getlist', (req, res) => {
   })
 })
 // 按条件查询
-router.get('/api/getlistdetl', (req, res) => {
+router.get('/getlistdetl', (req, res) => {
   const number = req.query.articleID
   const sqlStr = 'SELECT * FROM article  where articleID =?'
   conn.query(sqlStr, number, (err, results) => {
@@ -48,7 +48,7 @@ router.get('/api/getlistdetl', (req, res) => {
   })
 })
 // 插入
-router.post('/api/addcard', (req, res) => {
+router.post('/addcard', (req, res) => {
   const user = req.body;
   // var title =articleTitle req.body.title;
   // var content = req.body.content;
@@ -77,7 +77,7 @@ router.post('/api/addcard', (req, res) => {
  */
 
 //登陆路由
-router.post('/api/login', checkAuth, apiController.userLogin.bind(apiController))
+router.post('/login', checkAuth, apiController.userLogin.bind(apiController))
 //注册路由
 router.post('/register', checkAuth, apiController.userRegister.bind(apiController))
 
