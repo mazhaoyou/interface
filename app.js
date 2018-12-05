@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const router = require('./routes');
+const cors = require('cors');
 const app = express();
 
 // view engine setup
@@ -20,12 +21,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-//将静态资源文件所在的目录作为参数传递给 express.static 中间件就可以提供静态资源文件的访问了
-app.use(express.static('static'));
-app.use(express.static(path.join(__dirname, 'public')));
-//设置跨域访问
-app.use((req, res, next) => {
+//设置跨域访问  方法一
+app.use(cors());
+//方法二
+/* app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
@@ -41,7 +40,12 @@ app.use((req, res, next) => {
     
     next();
   }
-});
+}); */
+
+//将静态资源文件所在的目录作为参数传递给 express.static 中间件就可以提供静态资源文件的访问了
+app.use(express.static('static'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 //将路由统一到一个入口
 router(app);
