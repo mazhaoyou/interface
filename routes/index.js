@@ -1,4 +1,4 @@
-const users = require('./users.js')
+const users = require('./router.js')
 
 module.exports = function RouterModule (app) {
   //定义统一的路由前缀

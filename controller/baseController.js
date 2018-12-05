@@ -3,7 +3,7 @@ class baseController {
         this.res = res
         this.results = {
             code:200,
-            desc: 'successful',
+            status: 'successful',
             content: null
         }
     }

@@ -70,6 +70,16 @@ class ApiController extends BaseController {
       });
     }
   }
+  /*博客列表*/
+  bolgList(req,res){
+ try {
+   
+ } catch (error) {
+  res.status(400).json({
+    msg: error.message
+  });
+ }
+  }
 }
 
 module.exports = ApiController;
