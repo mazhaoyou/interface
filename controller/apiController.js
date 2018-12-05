@@ -48,10 +48,12 @@ class ApiController extends BaseController {
    * @param res
    */
   userRegister(req, res) {
+
     try {
       const query = req.query
       const number = req.body.number
       const password = req.body.password
+      console.log("number="+number);
       let loginData;
       loginData = this.apiService.userRegister(number, password).then(data => {
         res.status(200).json(this.result(data));

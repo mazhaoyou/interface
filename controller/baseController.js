@@ -2,7 +2,7 @@ class baseController {
     constructor(res) {
         this.res = res
         this.results = {
-            result: 0,
+            code:200,
             desc: 'successful',
             content: null
         }

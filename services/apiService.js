@@ -21,14 +21,21 @@ class ApiService extends BaseController {
         const select_number = $sql.user.select_number;
         const sql_add = $sql.user.add;
         conn.query(select_number, number, function (err, results) {
+          console.log("results="+results);
+          console.log("results2="+JSON.stringify(results));
           if (err) logger.error(error);
           if (results[0] === undefined) {
             conn.query(sql_add, [number, password], function (err, addData) {
-              if (err) logger.error(error);
-              if (results) {
-                resolve(BaseController(constructor));
+              if (err){
+                logger.error(error);
+              } else{
+              //  resolve(BaseController(constructor));
+              resolve({
+                msg: "您的信息注册成功！"
+              })
                 console.log("您的信息注册成功！");
-              }
+              } 
+           
             });
           } else {
             //当前注册name与数据库重复时，返回-1:提示已存在的用户名！
